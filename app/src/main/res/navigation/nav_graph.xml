@@ -16,7 +16,8 @@
     <fragment
         android:id="@+id/detail_fragment"
         android:name="com.zybooks.thebanddatabase.detailFragment"
-        android:label="@string/details">
+        android:label="@string/details"
+        tools:layout="@layout/fragment_detail">
         <action
             android:name="band_id"
             android:defaultValue="1"
