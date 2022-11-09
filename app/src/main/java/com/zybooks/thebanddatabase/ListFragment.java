@@ -1,5 +1,7 @@
 package com.zybooks.thebanddatabase;
 
+
+
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -10,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.List;
@@ -32,7 +32,7 @@ public class ListFragment extends Fragment {
             Bundle args = new Bundle();
             args.putInt(detailFragment.ARG_BAND_ID, selectedBandId);
 
-            View detailFragmentContainer = rootView.findViewById(R.id.deatil_frag_container);
+            View detailFragmentContainer = rootView.findViewById(R.id.detail_frag_container);
             if(detailFragmentContainer == null){
                 Navigation.findNavController(itemView).navigate(R.id.show_item_detail, args);
             }
@@ -49,24 +49,24 @@ public class ListFragment extends Fragment {
         return rootView;
     }
 
-    private class BandAdapter extends RecyclerView.Adapter<BandAdapter.BandHolder> {
+    private class BandAdapter extends RecyclerView.Adapter<BandHolder> {
         private final List<Band> mBands;
         private final View.OnClickListener mOnClickListener;
 
-        public BandAdapter(List<Band> bands, View.OnClickListener onClickListener){
+        public BandAdapter(List<Band> bands, View.OnClickListener onClickListener) {
             mBands = bands;
             mOnClickListener = onClickListener;
         }
 
         @NonNull
         @Override
-        public BandHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType){
+        public BandHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater layoutInflater = LayoutInflater.from(getActivity());
             return new BandHolder(layoutInflater, parent);
         }
 
         @Override
-        public void onBindViewHolder(BandHolder holder,int position){
+        public void onBindViewHolder(BandHolder holder, int position) {
             Band band = mBands.get(position);
             holder.bind(band);
             holder.itemView.setTag(band.getId());
@@ -74,11 +74,12 @@ public class ListFragment extends Fragment {
         }
 
         @Override
-        public int getItemCount(){
+        public int getItemCount() {
             return mBands.size();
         }
+    }
 
-        private class BandHolder extends RecyclerView.ViewHolder{
+        private static class BandHolder extends RecyclerView.ViewHolder{
             private final TextView mNameTextView;
 
             public BandHolder(LayoutInflater inflater, ViewGroup parent){
@@ -90,5 +91,5 @@ public class ListFragment extends Fragment {
                 mNameTextView.setText(band.getName());
             }
         }
-    }
 }
+
